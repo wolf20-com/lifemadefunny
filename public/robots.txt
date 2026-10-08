@@ -1,0 +1,13 @@
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: *
+Allow:
+
+Sitemap: https://lifemadefunny.com/sitemap.xml

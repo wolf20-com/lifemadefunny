@@ -1,0 +1,55 @@
+.share-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.share-text {
+    color: #888;
+}
+
+.sns-share {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.sns-btn {
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    opacity: 0.92;
+    width: 3rem;
+    height: 2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sns-btn:hover {
+    opacity: 1;
+}
+
+.sns-btn i {
+    font-size: 1.2em;
+}
+
+.sns-btn.twitter {
+    background: #222;
+    /* X (旧Twitter)は黒色 */
+}
+
+.sns-btn.facebook {
+    background: #1860bd;
+}
+
+.fa-x-twitter,
+.fa-facebook-f {
+    color: #eee;
+}
