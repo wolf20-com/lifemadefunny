@@ -8,22 +8,36 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check Firebase deployment credentials
+        env:
+          FIREBASE_SERVICE_ACCOUNT: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "::error::FIREBASE_SERVICE_ACCOUNT is not configured. See README.md for GitHub setup or deploy from an authenticated local Firebase CLI."
+            exit 1
+          fi
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "22"
 
       - run: npm ci
 
-      # 必要ならHTML自動生成ステップをここに追加
-      # - run: npm run generate
+      - run: npm run verify
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
           projectId: lifemadefunny-1b2a3
+
+      - name: Check public routes after deployment
+        run: npm run check:live

@@ -1,0 +1,22 @@
+name: Validate static site
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - run: npm run verify
+      - name: Ensure generated redirects are committed
+        run: git diff --exit-code -- firebase.json

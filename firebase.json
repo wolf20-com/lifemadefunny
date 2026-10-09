@@ -1,6 +1,9 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist",
+    "predeploy": [
+      "npm run verify"
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -8,10 +11,2745 @@
     ],
     "cleanUrls": true,
     "trailingSlash": true,
-    "rewrites": [
+    "headers": [
       {
-        "source": "/",
-        "function": "redirectByLocale"
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/assets/site.*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/assets/img/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=86400"
+          }
+        ]
+      },
+      {
+        "source": "/robots.txt",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "/ads.txt",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "/sitemap.xml",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/xml; charset=utf-8"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "regex": "^(?:/ja/categories/jobs/artist/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/artist/#moment-475dfc7ce0b3",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/call-center/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/call-center/#moment-f8df984c7408",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/chef/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/chef/#moment-6e5ba5b4af96",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/childcare/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/childcare/#moment-78ac61650e88",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/cleaning/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/cleaning/#moment-cb3ad98410be",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/construction/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/construction/#moment-1f610b6dce8f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/creative/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/creative/#moment-2c9c1c649f3a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/delivery/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/delivery/#moment-e4aaad2b1573",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/driver/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/driver/#moment-38f7e8ed4e66",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/engineer/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/engineer/#moment-d9e864f81695",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/event-staff/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/event-staff/#moment-f5776293e555",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/farmer/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/farmer/#moment-d4dbe5a713d9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/flight-attendant/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/flight-attendant/#moment-89177fbfa5f8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/freelancer/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/freelancer/#moment-55587fc61b30",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/hairdresser/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/hairdresser/#moment-5fee49d2c36b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/medical/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/medical/#moment-c28be848e244",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/office-worker/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/office-worker/#moment-52992b760c71",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/police/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/police/#moment-acecfa06d5e2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/public-servant/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/public-servant/#moment-87d89461d8f4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/researcher/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/researcher/#moment-59a1cc7163d1",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/sales/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/sales/#moment-1aa0986d80d1",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/security/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/security/#moment-8c7ca22b0389",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/service-industry/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/service-industry/#moment-653d5614c160",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/teacher/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/teacher/#moment-f4ab56d8573e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/jobs/waiter/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/jobs/waiter/#moment-434b97fdd20c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/badminton/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/badminton/#moment-0a19f612f830",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/baseball/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/baseball/#moment-f15fc964485d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/basketball/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/basketball/#moment-a2e06ab177c7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/cricket/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/cricket/#moment-063cf87335d9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/cycling/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/cycling/#moment-e720df350704",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/golf/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/golf/#moment-00bbe55c7fe9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/gymnastics/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/gymnastics/#moment-c36ba223150e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/hockey/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/hockey/#moment-10c84833af49",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/martial_arts/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/martial_arts/#moment-19bc5b3261bd",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/rugby/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/rugby/#moment-adffaa425204",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/ski_snowboard/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/ski_snowboard/#moment-f109bb2f0c5c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/soccer/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/soccer/#moment-5c089ce86584",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/swimming/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/swimming/#moment-fff16e6e80b2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/table_tennis/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/table_tennis/#moment-2a59c159cbb8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/tennis/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/tennis/#moment-2ef5c1f3e91f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/track_and_field/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/track_and_field/#moment-8fe91b8bc624",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/categories/sports/volleyball/page2)(?:\\.html)?/?$",
+        "destination": "/ja/categories/sports/volleyball/#moment-fec82683436c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/accident/page2|/ja/tags/accident/page3|/ja/tags/accident/page4|/ja/tags/accident/page5)(?:\\.html)?/?$",
+        "destination": "/ja/tags/accident/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/break/page2|/ja/tags/break/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/break/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/challenge/page10|/ja/tags/challenge/page12|/ja/tags/challenge/page13|/ja/tags/challenge/page14|/ja/tags/challenge/page15|/ja/tags/challenge/page16|/ja/tags/challenge/page17|/ja/tags/challenge/page18|/ja/tags/challenge/page19|/ja/tags/challenge/page2|/ja/tags/challenge/page20|/ja/tags/challenge/page3|/ja/tags/challenge/page4|/ja/tags/challenge/page5|/ja/tags/challenge/page6|/ja/tags/challenge/page7|/ja/tags/challenge/page8|/ja/tags/challenge/page9)(?:\\.html)?/?$",
+        "destination": "/ja/tags/challenge/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/club/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/club/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/communication/page2|/ja/tags/communication/page3|/ja/tags/communication/page4|/ja/tags/communication/page5|/ja/tags/communication/page6|/ja/tags/communication/page7|/ja/tags/communication/page8)(?:\\.html)?/?$",
+        "destination": "/ja/tags/communication/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/competition/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/competition/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/creativity/page2|/ja/tags/creativity/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/creativity/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/customer/page2|/ja/tags/customer/page3|/ja/tags/customer/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/customer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/customer-service/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/customer-service/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/document/page2|/ja/tags/document/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/document/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/effort/page2|/ja/tags/effort/page3|/ja/tags/effort/page4|/ja/tags/effort/page5|/ja/tags/effort/page6|/ja/tags/effort/page7|/ja/tags/effort/page8|/ja/tags/effort/page9)(?:\\.html)?/?$",
+        "destination": "/ja/tags/effort/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/energy/page2|/ja/tags/energy/page3|/ja/tags/energy/page4|/ja/tags/energy/page5)(?:\\.html)?/?$",
+        "destination": "/ja/tags/energy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/event/page2|/ja/tags/event/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/event/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/failure/page2|/ja/tags/failure/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/failure/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/focus/page2|/ja/tags/focus/page3|/ja/tags/focus/page4|/ja/tags/focus/page5|/ja/tags/focus/page6)(?:\\.html)?/?$",
+        "destination": "/ja/tags/focus/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/food/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/food/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/fun/page10|/ja/tags/fun/page12|/ja/tags/fun/page13|/ja/tags/fun/page2|/ja/tags/fun/page3|/ja/tags/fun/page4|/ja/tags/fun/page5|/ja/tags/fun/page6|/ja/tags/fun/page7|/ja/tags/fun/page8|/ja/tags/fun/page9)(?:\\.html)?/?$",
+        "destination": "/ja/tags/fun/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/goal/page2|/ja/tags/goal/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/goal/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/growth/page2|/ja/tags/growth/page3|/ja/tags/growth/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/growth/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/habit/page10|/ja/tags/habit/page12|/ja/tags/habit/page13|/ja/tags/habit/page14|/ja/tags/habit/page15|/ja/tags/habit/page16|/ja/tags/habit/page17|/ja/tags/habit/page2|/ja/tags/habit/page3|/ja/tags/habit/page4|/ja/tags/habit/page5|/ja/tags/habit/page6|/ja/tags/habit/page7|/ja/tags/habit/page8|/ja/tags/habit/page9)(?:\\.html)?/?$",
+        "destination": "/ja/tags/habit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/hydration/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/hydration/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/injury/page2|/ja/tags/injury/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/injury/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/luck/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/luck/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/lunch/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/lunch/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/memory/page2|/ja/tags/memory/page3|/ja/tags/memory/page4|/ja/tags/memory/page5)(?:\\.html)?/?$",
+        "destination": "/ja/tags/memory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/mood/page2|/ja/tags/mood/page3|/ja/tags/mood/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/mood/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/motivation/page2|/ja/tags/motivation/page3|/ja/tags/motivation/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/motivation/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/mystery/page2|/ja/tags/mystery/page3|/ja/tags/mystery/page4|/ja/tags/mystery/page5)(?:\\.html)?/?$",
+        "destination": "/ja/tags/mystery/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/night/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/night/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/plan/page2|/ja/tags/plan/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/plan/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/practice/page2|/ja/tags/practice/page3|/ja/tags/practice/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/practice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/regret/page2|/ja/tags/regret/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/regret/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/relax/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/relax/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/result/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/result/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/routine/page2|/ja/tags/routine/page3|/ja/tags/routine/page4|/ja/tags/routine/page5|/ja/tags/routine/page6|/ja/tags/routine/page7)(?:\\.html)?/?$",
+        "destination": "/ja/tags/routine/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/routine-work/page10|/ja/tags/routine-work/page12|/ja/tags/routine-work/page13|/ja/tags/routine-work/page14|/ja/tags/routine-work/page15|/ja/tags/routine-work/page16|/ja/tags/routine-work/page17|/ja/tags/routine-work/page18|/ja/tags/routine-work/page2|/ja/tags/routine-work/page3|/ja/tags/routine-work/page4|/ja/tags/routine-work/page5|/ja/tags/routine-work/page6|/ja/tags/routine-work/page7|/ja/tags/routine-work/page8|/ja/tags/routine-work/page9)(?:\\.html)?/?$",
+        "destination": "/ja/tags/routine-work/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/rule/page2|/ja/tags/rule/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/rule/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/service/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/service/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/shoes/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/shoes/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/skill/page2|/ja/tags/skill/page3|/ja/tags/skill/page4|/ja/tags/skill/page5|/ja/tags/skill/page6)(?:\\.html)?/?$",
+        "destination": "/ja/tags/skill/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/smile/page2|/ja/tags/smile/page3|/ja/tags/smile/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/smile/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/spirit/page2|/ja/tags/spirit/page3|/ja/tags/spirit/page4|/ja/tags/spirit/page5|/ja/tags/spirit/page6)(?:\\.html)?/?$",
+        "destination": "/ja/tags/spirit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/strategy/page2|/ja/tags/strategy/page3|/ja/tags/strategy/page4|/ja/tags/strategy/page5|/ja/tags/strategy/page6)(?:\\.html)?/?$",
+        "destination": "/ja/tags/strategy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/stress/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/stress/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/summer/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/summer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/support/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/support/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/team/page10|/ja/tags/team/page2|/ja/tags/team/page3|/ja/tags/team/page4|/ja/tags/team/page5|/ja/tags/team/page6|/ja/tags/team/page7|/ja/tags/team/page8|/ja/tags/team/page9)(?:\\.html)?/?$",
+        "destination": "/ja/tags/team/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/tension/page2|/ja/tags/tension/page3|/ja/tags/tension/page4|/ja/tags/tension/page5)(?:\\.html)?/?$",
+        "destination": "/ja/tags/tension/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/thanks/page2|/ja/tags/thanks/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/thanks/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/travel/page2|/ja/tags/travel/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/travel/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/uniform/page2|/ja/tags/uniform/page3|/ja/tags/uniform/page4)(?:\\.html)?/?$",
+        "destination": "/ja/tags/uniform/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/voice/page2)(?:\\.html)?/?$",
+        "destination": "/ja/tags/voice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/weather/page2|/ja/tags/weather/page3)(?:\\.html)?/?$",
+        "destination": "/ja/tags/weather/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/ja/tags/workplace/page2|/ja/tags/workplace/page3|/ja/tags/workplace/page4|/ja/tags/workplace/page5)(?:\\.html)?/?$",
+        "destination": "/ja/tags/workplace/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/artist/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/artist/#moment-bdb77dd588ee",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/call-center/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/call-center/#moment-64517ba21eb7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/chef/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/chef/#moment-42f69af94e99",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/childcare/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/childcare/#moment-62d26ca6699c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/cleaning/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/cleaning/#moment-53e71244b928",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/construction/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/construction/#moment-3bf2c0785d7a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/creative/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/creative/#moment-1ef327efc120",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/delivery/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/delivery/#moment-13e4d49a9ce6",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/driver/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/driver/#moment-9b677ae9412e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/engineer/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/engineer/#moment-1ffb4f273398",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/event-staff/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/event-staff/#moment-192351b69fe8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/farmer/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/farmer/#moment-f1b8ad27e407",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/flight-attendant/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/flight-attendant/#moment-0ed0ae13a742",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/freelancer/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/freelancer/#moment-e7bc1593880a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/hairdresser/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/hairdresser/#moment-c36cfc00c243",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/medical/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/medical/#moment-50515c923cb8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/office-worker/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/office-worker/#moment-cc76e11c7d69",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/police/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/police/#moment-a1088a4e0207",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/public-servant/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/public-servant/#moment-138346c7f1d5",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/researcher/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/researcher/#moment-72c244cdbd02",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/sales/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/sales/#moment-117097f017c8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/security/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/security/#moment-644f3668916f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/service-industry/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/service-industry/#moment-d3069afe4c0d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/teacher/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/teacher/#moment-b622a368a657",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/jobs/waiter/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/jobs/waiter/#moment-1c90a0055dfd",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/american_football/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/american_football/#moment-75c208930d3d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/badminton/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/badminton/#moment-b6781c129a05",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/baseball/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/baseball/#moment-b806d30833ca",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/basketball/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/basketball/#moment-e8c56bbc0633",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/cricket/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/cricket/#moment-c55310ff4e7a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/cycling/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/cycling/#moment-bb5764ad65c4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/golf/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/golf/#moment-b1bd218a8dc9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/gymnastics/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/gymnastics/#moment-79d8493e9f44",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/hockey/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/hockey/#moment-ed603d19ec2b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/martial_arts/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/martial_arts/#moment-357e6dae77ce",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/rugby/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/rugby/#moment-252db4b55843",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/ski_snowboard/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/ski_snowboard/#moment-c3359a3c9148",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/soccer/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/soccer/#moment-e2e03caceb51",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/swimming/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/swimming/#moment-af72b45ee82d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/table_tennis/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/table_tennis/#moment-8526e0e2b3b1",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/tennis/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/tennis/#moment-993eec8a31f4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/track_and_field/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/track_and_field/#moment-efb72622f334",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/categories/sports/volleyball/page2)(?:\\.html)?/?$",
+        "destination": "/en/categories/sports/volleyball/#moment-ee9f1e0065bc",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/accident/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/accident/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/break/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/break/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/challenge/page10|/en/tags/challenge/page12|/en/tags/challenge/page13|/en/tags/challenge/page14|/en/tags/challenge/page15|/en/tags/challenge/page16|/en/tags/challenge/page17|/en/tags/challenge/page18|/en/tags/challenge/page19|/en/tags/challenge/page2|/en/tags/challenge/page20|/en/tags/challenge/page22|/en/tags/challenge/page23|/en/tags/challenge/page24|/en/tags/challenge/page25|/en/tags/challenge/page26|/en/tags/challenge/page27|/en/tags/challenge/page28|/en/tags/challenge/page29|/en/tags/challenge/page3|/en/tags/challenge/page30|/en/tags/challenge/page32|/en/tags/challenge/page4|/en/tags/challenge/page5|/en/tags/challenge/page6|/en/tags/challenge/page7|/en/tags/challenge/page8|/en/tags/challenge/page9)(?:\\.html)?/?$",
+        "destination": "/en/tags/challenge/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/coach/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/coach/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/coffee/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/coffee/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/communication/page2|/en/tags/communication/page3|/en/tags/communication/page4|/en/tags/communication/page5|/en/tags/communication/page6)(?:\\.html)?/?$",
+        "destination": "/en/tags/communication/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/competition/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/competition/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/creativity/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/creativity/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/customer/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/customer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/document/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/document/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/energy/page2|/en/tags/energy/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/energy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/failure/page2|/en/tags/failure/page3|/en/tags/failure/page4)(?:\\.html)?/?$",
+        "destination": "/en/tags/failure/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/family/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/family/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/focus/page2|/en/tags/focus/page3|/en/tags/focus/page4|/en/tags/focus/page5|/en/tags/focus/page6|/en/tags/focus/page7|/en/tags/focus/page8)(?:\\.html)?/?$",
+        "destination": "/en/tags/focus/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/food/page2|/en/tags/food/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/food/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/friendship/page2|/en/tags/friendship/page3|/en/tags/friendship/page4)(?:\\.html)?/?$",
+        "destination": "/en/tags/friendship/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/fun/page10|/en/tags/fun/page12|/en/tags/fun/page13|/en/tags/fun/page14|/en/tags/fun/page15|/en/tags/fun/page16|/en/tags/fun/page17|/en/tags/fun/page18|/en/tags/fun/page19|/en/tags/fun/page2|/en/tags/fun/page20|/en/tags/fun/page22|/en/tags/fun/page23|/en/tags/fun/page24|/en/tags/fun/page25|/en/tags/fun/page26|/en/tags/fun/page27|/en/tags/fun/page28|/en/tags/fun/page29|/en/tags/fun/page3|/en/tags/fun/page30|/en/tags/fun/page32|/en/tags/fun/page33|/en/tags/fun/page34|/en/tags/fun/page35|/en/tags/fun/page36|/en/tags/fun/page37|/en/tags/fun/page4|/en/tags/fun/page5|/en/tags/fun/page6|/en/tags/fun/page7|/en/tags/fun/page8|/en/tags/fun/page9)(?:\\.html)?/?$",
+        "destination": "/en/tags/fun/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/habit/page10|/en/tags/habit/page12|/en/tags/habit/page13|/en/tags/habit/page14|/en/tags/habit/page15|/en/tags/habit/page16|/en/tags/habit/page17|/en/tags/habit/page18|/en/tags/habit/page19|/en/tags/habit/page2|/en/tags/habit/page20|/en/tags/habit/page22|/en/tags/habit/page23|/en/tags/habit/page24|/en/tags/habit/page25|/en/tags/habit/page26|/en/tags/habit/page27|/en/tags/habit/page28|/en/tags/habit/page29|/en/tags/habit/page3|/en/tags/habit/page4|/en/tags/habit/page5|/en/tags/habit/page6|/en/tags/habit/page7|/en/tags/habit/page8|/en/tags/habit/page9)(?:\\.html)?/?$",
+        "destination": "/en/tags/habit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/injury/page2|/en/tags/injury/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/injury/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/luck/page2|/en/tags/luck/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/luck/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/memory/page2|/en/tags/memory/page3|/en/tags/memory/page4|/en/tags/memory/page5|/en/tags/memory/page6|/en/tags/memory/page7)(?:\\.html)?/?$",
+        "destination": "/en/tags/memory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/miracle/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/miracle/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/mystery/page2|/en/tags/mystery/page3|/en/tags/mystery/page4|/en/tags/mystery/page5)(?:\\.html)?/?$",
+        "destination": "/en/tags/mystery/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/night/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/night/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/plan/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/plan/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/practice/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/practice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/rain/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/rain/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/routine/page10|/en/tags/routine/page12|/en/tags/routine/page13|/en/tags/routine/page14|/en/tags/routine/page15|/en/tags/routine/page16|/en/tags/routine/page17|/en/tags/routine/page18|/en/tags/routine/page19|/en/tags/routine/page2|/en/tags/routine/page20|/en/tags/routine/page22|/en/tags/routine/page23|/en/tags/routine/page24|/en/tags/routine/page25|/en/tags/routine/page26|/en/tags/routine/page27|/en/tags/routine/page28|/en/tags/routine/page29|/en/tags/routine/page3|/en/tags/routine/page30|/en/tags/routine/page32|/en/tags/routine/page33|/en/tags/routine/page34|/en/tags/routine/page35|/en/tags/routine/page36|/en/tags/routine/page37|/en/tags/routine/page38|/en/tags/routine/page39|/en/tags/routine/page4|/en/tags/routine/page5|/en/tags/routine/page6|/en/tags/routine/page7|/en/tags/routine/page8|/en/tags/routine/page9)(?:\\.html)?/?$",
+        "destination": "/en/tags/routine/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/secret/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/secret/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/service/page2|/en/tags/service/page3|/en/tags/service/page4)(?:\\.html)?/?$",
+        "destination": "/en/tags/service/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/shoes/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/shoes/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/skill/page2|/en/tags/skill/page3|/en/tags/skill/page4|/en/tags/skill/page5|/en/tags/skill/page6|/en/tags/skill/page7|/en/tags/skill/page8|/en/tags/skill/page9)(?:\\.html)?/?$",
+        "destination": "/en/tags/skill/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/snack/page2|/en/tags/snack/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/snack/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/spirit/page10|/en/tags/spirit/page2|/en/tags/spirit/page3|/en/tags/spirit/page4|/en/tags/spirit/page5|/en/tags/spirit/page6|/en/tags/spirit/page7|/en/tags/spirit/page8|/en/tags/spirit/page9)(?:\\.html)?/?$",
+        "destination": "/en/tags/spirit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/success/page2|/en/tags/success/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/success/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/summer/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/summer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/team/page2|/en/tags/team/page3|/en/tags/team/page4|/en/tags/team/page5|/en/tags/team/page6|/en/tags/team/page7|/en/tags/team/page8)(?:\\.html)?/?$",
+        "destination": "/en/tags/team/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/tension/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/tension/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/uniform/page2|/en/tags/uniform/page3|/en/tags/uniform/page4|/en/tags/uniform/page5|/en/tags/uniform/page6)(?:\\.html)?/?$",
+        "destination": "/en/tags/uniform/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/victory/page2)(?:\\.html)?/?$",
+        "destination": "/en/tags/victory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/en/tags/weather/page2|/en/tags/weather/page3)(?:\\.html)?/?$",
+        "destination": "/en/tags/weather/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/artist/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/artist/#moment-63eb4f0889e4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/call-center/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/call-center/#moment-8dca6f07eef2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/chef/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/chef/#moment-3ce47f3a558f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/childcare/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/childcare/#moment-720d5e3acfed",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/cleaning/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/cleaning/#moment-da5c5e570349",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/construction/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/construction/#moment-0d8e5812a114",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/creative/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/creative/#moment-e6753b9f897b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/delivery/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/delivery/#moment-dcf799e1108f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/driver/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/driver/#moment-2d957c57d340",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/engineer/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/engineer/#moment-285aa2573450",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/event-staff/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/event-staff/#moment-53aabe674780",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/farmer/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/farmer/#moment-3551986a2c89",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/flight-attendant/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/flight-attendant/#moment-b54a8519af68",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/freelancer/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/freelancer/#moment-b7de3d266d87",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/hairdresser/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/hairdresser/#moment-a3d017c03264",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/medical/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/medical/#moment-0b0443c6946a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/office-worker/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/office-worker/#moment-7eb80df0b0f2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/police/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/police/#moment-559255bd121a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/public-servant/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/public-servant/#moment-a2d703da13f2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/researcher/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/researcher/#moment-89a2e7c73380",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/sales/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/sales/#moment-e8ab0c508f28",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/security/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/security/#moment-4357c65675f8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/service-industry/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/service-industry/#moment-e50c035deb0e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/teacher/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/teacher/#moment-8ee5db95bdef",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/jobs/waiter/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/jobs/waiter/#moment-94634e0eba0b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/american_football/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/american_football/#moment-1cfa992f769a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/badminton/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/badminton/#moment-578ae29c720d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/baseball/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/baseball/#moment-88483f2baa4f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/basketball/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/basketball/#moment-9195e160afe4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/cricket/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/cricket/#moment-6171c3b01141",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/cycling/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/cycling/#moment-736a24a9e1d3",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/golf/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/golf/#moment-518b53de23f3",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/gymnastics/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/gymnastics/#moment-f343428cb5fb",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/hockey/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/hockey/#moment-b05890559177",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/martial_arts/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/martial_arts/#moment-b5f96fd63ec4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/rugby/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/rugby/#moment-edfb13a73f18",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/ski_snowboard/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/ski_snowboard/#moment-7eea2448420f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/soccer/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/soccer/#moment-2622ee81fa9a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/swimming/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/swimming/#moment-c84698dee5cf",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/table_tennis/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/table_tennis/#moment-b817126d3d74",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/tennis/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/tennis/#moment-51162737704c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/track_and_field/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/track_and_field/#moment-1ca24187b9f7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/categories/sports/volleyball/page2)(?:\\.html)?/?$",
+        "destination": "/fr/categories/sports/volleyball/#moment-b0070cc65901",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/accident/page2|/fr/tags/accident/page3|/fr/tags/accident/page4|/fr/tags/accident/page5|/fr/tags/accident/page6)(?:\\.html)?/?$",
+        "destination": "/fr/tags/accident/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/break/page2|/fr/tags/break/page3|/fr/tags/break/page4|/fr/tags/break/page5)(?:\\.html)?/?$",
+        "destination": "/fr/tags/break/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/challenge/page10|/fr/tags/challenge/page12|/fr/tags/challenge/page13|/fr/tags/challenge/page14|/fr/tags/challenge/page15|/fr/tags/challenge/page16|/fr/tags/challenge/page17|/fr/tags/challenge/page18|/fr/tags/challenge/page19|/fr/tags/challenge/page2|/fr/tags/challenge/page20|/fr/tags/challenge/page22|/fr/tags/challenge/page23|/fr/tags/challenge/page24|/fr/tags/challenge/page25|/fr/tags/challenge/page26|/fr/tags/challenge/page27|/fr/tags/challenge/page28|/fr/tags/challenge/page29|/fr/tags/challenge/page3|/fr/tags/challenge/page30|/fr/tags/challenge/page32|/fr/tags/challenge/page33|/fr/tags/challenge/page34|/fr/tags/challenge/page35|/fr/tags/challenge/page36|/fr/tags/challenge/page4|/fr/tags/challenge/page5|/fr/tags/challenge/page6|/fr/tags/challenge/page7|/fr/tags/challenge/page8|/fr/tags/challenge/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/challenge/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/club/page2|/fr/tags/club/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/club/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/coach/page2|/fr/tags/coach/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/coach/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/coffee/page2|/fr/tags/coffee/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/coffee/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/colleague/page2|/fr/tags/colleague/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/colleague/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/communication/page2|/fr/tags/communication/page3|/fr/tags/communication/page4|/fr/tags/communication/page5|/fr/tags/communication/page6|/fr/tags/communication/page7)(?:\\.html)?/?$",
+        "destination": "/fr/tags/communication/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/competition/page2|/fr/tags/competition/page3|/fr/tags/competition/page4|/fr/tags/competition/page5|/fr/tags/competition/page6)(?:\\.html)?/?$",
+        "destination": "/fr/tags/competition/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/creativity/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/creativity/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/customer/page2|/fr/tags/customer/page3|/fr/tags/customer/page4|/fr/tags/customer/page5|/fr/tags/customer/page6)(?:\\.html)?/?$",
+        "destination": "/fr/tags/customer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/effort/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/effort/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/energy/page2|/fr/tags/energy/page3|/fr/tags/energy/page4|/fr/tags/energy/page5|/fr/tags/energy/page6)(?:\\.html)?/?$",
+        "destination": "/fr/tags/energy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/event/page10|/fr/tags/event/page12|/fr/tags/event/page13|/fr/tags/event/page14|/fr/tags/event/page15|/fr/tags/event/page16|/fr/tags/event/page2|/fr/tags/event/page3|/fr/tags/event/page4|/fr/tags/event/page5|/fr/tags/event/page6|/fr/tags/event/page7|/fr/tags/event/page8|/fr/tags/event/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/event/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/failure/page2|/fr/tags/failure/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/failure/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/family/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/family/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/food/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/food/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/fun/page10|/fr/tags/fun/page12|/fr/tags/fun/page13|/fr/tags/fun/page14|/fr/tags/fun/page15|/fr/tags/fun/page16|/fr/tags/fun/page17|/fr/tags/fun/page18|/fr/tags/fun/page19|/fr/tags/fun/page2|/fr/tags/fun/page20|/fr/tags/fun/page22|/fr/tags/fun/page23|/fr/tags/fun/page24|/fr/tags/fun/page25|/fr/tags/fun/page26|/fr/tags/fun/page27|/fr/tags/fun/page28|/fr/tags/fun/page29|/fr/tags/fun/page3|/fr/tags/fun/page30|/fr/tags/fun/page32|/fr/tags/fun/page33|/fr/tags/fun/page34|/fr/tags/fun/page35|/fr/tags/fun/page36|/fr/tags/fun/page37|/fr/tags/fun/page38|/fr/tags/fun/page39|/fr/tags/fun/page4|/fr/tags/fun/page40|/fr/tags/fun/page42|/fr/tags/fun/page43|/fr/tags/fun/page44|/fr/tags/fun/page45|/fr/tags/fun/page46|/fr/tags/fun/page47|/fr/tags/fun/page48|/fr/tags/fun/page49|/fr/tags/fun/page5|/fr/tags/fun/page6|/fr/tags/fun/page7|/fr/tags/fun/page8|/fr/tags/fun/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/fun/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/habit/page10|/fr/tags/habit/page12|/fr/tags/habit/page13|/fr/tags/habit/page14|/fr/tags/habit/page15|/fr/tags/habit/page16|/fr/tags/habit/page17|/fr/tags/habit/page18|/fr/tags/habit/page19|/fr/tags/habit/page2|/fr/tags/habit/page20|/fr/tags/habit/page22|/fr/tags/habit/page23|/fr/tags/habit/page24|/fr/tags/habit/page25|/fr/tags/habit/page26|/fr/tags/habit/page3|/fr/tags/habit/page4|/fr/tags/habit/page5|/fr/tags/habit/page6|/fr/tags/habit/page7|/fr/tags/habit/page8|/fr/tags/habit/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/habit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/injury/page2|/fr/tags/injury/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/injury/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/luck/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/luck/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/meeting/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/meeting/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/memory/page2|/fr/tags/memory/page3|/fr/tags/memory/page4|/fr/tags/memory/page5|/fr/tags/memory/page6|/fr/tags/memory/page7|/fr/tags/memory/page8|/fr/tags/memory/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/memory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/motivation/page2|/fr/tags/motivation/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/motivation/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/mystery/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/mystery/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/night/page2|/fr/tags/night/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/night/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/practice/page2|/fr/tags/practice/page3|/fr/tags/practice/page4)(?:\\.html)?/?$",
+        "destination": "/fr/tags/practice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/project/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/project/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/rival/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/rival/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/routine/page10|/fr/tags/routine/page12|/fr/tags/routine/page13|/fr/tags/routine/page14|/fr/tags/routine/page15|/fr/tags/routine/page16|/fr/tags/routine/page17|/fr/tags/routine/page18|/fr/tags/routine/page19|/fr/tags/routine/page2|/fr/tags/routine/page3|/fr/tags/routine/page4|/fr/tags/routine/page5|/fr/tags/routine/page6|/fr/tags/routine/page7|/fr/tags/routine/page8|/fr/tags/routine/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/routine/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/routine-work/page2|/fr/tags/routine-work/page3|/fr/tags/routine-work/page4|/fr/tags/routine-work/page5|/fr/tags/routine-work/page6|/fr/tags/routine-work/page7)(?:\\.html)?/?$",
+        "destination": "/fr/tags/routine-work/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/shoes/page2|/fr/tags/shoes/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/shoes/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/skill/page2|/fr/tags/skill/page3|/fr/tags/skill/page4|/fr/tags/skill/page5)(?:\\.html)?/?$",
+        "destination": "/fr/tags/skill/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/smile/page2|/fr/tags/smile/page3|/fr/tags/smile/page4)(?:\\.html)?/?$",
+        "destination": "/fr/tags/smile/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/strategy/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/strategy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/stress/page2|/fr/tags/stress/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/stress/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/success/page2|/fr/tags/success/page3|/fr/tags/success/page4)(?:\\.html)?/?$",
+        "destination": "/fr/tags/success/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/task/page2|/fr/tags/task/page3|/fr/tags/task/page4|/fr/tags/task/page5|/fr/tags/task/page6|/fr/tags/task/page7|/fr/tags/task/page8|/fr/tags/task/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/task/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/team/page10|/fr/tags/team/page12|/fr/tags/team/page2|/fr/tags/team/page3|/fr/tags/team/page4|/fr/tags/team/page5|/fr/tags/team/page6|/fr/tags/team/page7|/fr/tags/team/page8|/fr/tags/team/page9)(?:\\.html)?/?$",
+        "destination": "/fr/tags/team/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/tension/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/tension/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/uniform/page2|/fr/tags/uniform/page3|/fr/tags/uniform/page4)(?:\\.html)?/?$",
+        "destination": "/fr/tags/uniform/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/waiting/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/waiting/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/weather/page2|/fr/tags/weather/page3)(?:\\.html)?/?$",
+        "destination": "/fr/tags/weather/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/winter/page2)(?:\\.html)?/?$",
+        "destination": "/fr/tags/winter/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/fr/tags/workplace/page2|/fr/tags/workplace/page3|/fr/tags/workplace/page4|/fr/tags/workplace/page5|/fr/tags/workplace/page6|/fr/tags/workplace/page7|/fr/tags/workplace/page8)(?:\\.html)?/?$",
+        "destination": "/fr/tags/workplace/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/artist/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/artist/#moment-304382bd6344",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/call-center/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/call-center/#moment-bf38978fe7c5",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/chef/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/chef/#moment-d188f22b2f3d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/childcare/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/childcare/#moment-df5fa490c3b6",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/cleaning/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/cleaning/#moment-aba2a9e7f783",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/construction/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/construction/#moment-38590631dd2d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/creative/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/creative/#moment-5a1e91c0e0ef",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/delivery/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/delivery/#moment-429a1f05cd88",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/driver/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/driver/#moment-a9a8943a4f42",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/engineer/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/engineer/#moment-c5674a44c46a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/event-staff/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/event-staff/#moment-eebd5e7c40ae",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/farmer/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/farmer/#moment-522a0eb2f3d7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/flight-attendant/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/flight-attendant/#moment-590f710ad04a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/freelancer/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/freelancer/#moment-7c3b95dfcba3",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/hairdresser/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/hairdresser/#moment-df9ac9b4f2c5",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/medical/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/medical/#moment-75c20614e7ff",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/office-worker/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/office-worker/#moment-0b17ee1b003c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/police/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/police/#moment-602fce8407ce",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/public-servant/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/public-servant/#moment-720cc95efaf3",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/researcher/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/researcher/#moment-a0d0b955ce59",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/sales/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/sales/#moment-c36f1cbb529f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/security/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/security/#moment-e1734ba714c4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/service-industry/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/service-industry/#moment-2b4b2962e1d7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/teacher/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/teacher/#moment-103c060e44e6",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/jobs/waiter/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/jobs/waiter/#moment-21012fdec6fd",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/american_football/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/american_football/#moment-1e8c4c6c9573",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/badminton/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/badminton/#moment-baca5983496b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/baseball/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/baseball/#moment-70195151c14e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/basketball/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/basketball/#moment-b72bd3e0a714",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/cricket/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/cricket/#moment-e06985a7a37a",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/cycling/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/cycling/#moment-026602156911",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/golf/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/golf/#moment-95b21601e547",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/gymnastics/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/gymnastics/#moment-b86a8e4d6925",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/hockey/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/hockey/#moment-c9f4ba0b5144",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/martial_arts/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/martial_arts/#moment-8b1352696d9e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/rugby/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/rugby/#moment-1b27901f5db2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/ski_snowboard/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/ski_snowboard/#moment-9489267365c5",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/soccer/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/soccer/#moment-098b8b17a5fd",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/swimming/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/swimming/#moment-72da6e6c26c9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/table_tennis/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/table_tennis/#moment-19e9dbe36def",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/tennis/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/tennis/#moment-7a56d4111a36",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/track_and_field/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/track_and_field/#moment-cd87ebb18eee",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/categories/sports/volleyball/page2)(?:\\.html)?/?$",
+        "destination": "/pt/categories/sports/volleyball/#moment-2b2156347adc",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/accident/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/accident/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/break/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/break/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/challenge/page10|/pt/tags/challenge/page12|/pt/tags/challenge/page13|/pt/tags/challenge/page14|/pt/tags/challenge/page15|/pt/tags/challenge/page16|/pt/tags/challenge/page17|/pt/tags/challenge/page18|/pt/tags/challenge/page19|/pt/tags/challenge/page2|/pt/tags/challenge/page20|/pt/tags/challenge/page22|/pt/tags/challenge/page23|/pt/tags/challenge/page24|/pt/tags/challenge/page25|/pt/tags/challenge/page26|/pt/tags/challenge/page27|/pt/tags/challenge/page28|/pt/tags/challenge/page29|/pt/tags/challenge/page3|/pt/tags/challenge/page30|/pt/tags/challenge/page4|/pt/tags/challenge/page5|/pt/tags/challenge/page6|/pt/tags/challenge/page7|/pt/tags/challenge/page8|/pt/tags/challenge/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/challenge/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/change/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/change/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/client/page2|/pt/tags/client/page3|/pt/tags/client/page4)(?:\\.html)?/?$",
+        "destination": "/pt/tags/client/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/coach/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/coach/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/communication/page2|/pt/tags/communication/page3|/pt/tags/communication/page4|/pt/tags/communication/page5|/pt/tags/communication/page6|/pt/tags/communication/page7|/pt/tags/communication/page8|/pt/tags/communication/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/communication/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/competition/page2|/pt/tags/competition/page3|/pt/tags/competition/page4)(?:\\.html)?/?$",
+        "destination": "/pt/tags/competition/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/creativity/page2|/pt/tags/creativity/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/creativity/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/customer-service/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/customer-service/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/effort/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/effort/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/energy/page2|/pt/tags/energy/page3|/pt/tags/energy/page4|/pt/tags/energy/page5|/pt/tags/energy/page6)(?:\\.html)?/?$",
+        "destination": "/pt/tags/energy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/event/page2|/pt/tags/event/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/event/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/focus/page2|/pt/tags/focus/page3|/pt/tags/focus/page4)(?:\\.html)?/?$",
+        "destination": "/pt/tags/focus/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/friendship/page2|/pt/tags/friendship/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/friendship/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/fun/page10|/pt/tags/fun/page12|/pt/tags/fun/page13|/pt/tags/fun/page14|/pt/tags/fun/page15|/pt/tags/fun/page16|/pt/tags/fun/page17|/pt/tags/fun/page18|/pt/tags/fun/page19|/pt/tags/fun/page2|/pt/tags/fun/page20|/pt/tags/fun/page22|/pt/tags/fun/page23|/pt/tags/fun/page24|/pt/tags/fun/page25|/pt/tags/fun/page26|/pt/tags/fun/page27|/pt/tags/fun/page28|/pt/tags/fun/page3|/pt/tags/fun/page4|/pt/tags/fun/page5|/pt/tags/fun/page6|/pt/tags/fun/page7|/pt/tags/fun/page8|/pt/tags/fun/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/fun/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/habit/page10|/pt/tags/habit/page12|/pt/tags/habit/page2|/pt/tags/habit/page3|/pt/tags/habit/page4|/pt/tags/habit/page5|/pt/tags/habit/page6|/pt/tags/habit/page7|/pt/tags/habit/page8|/pt/tags/habit/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/habit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/injury/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/injury/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/memory/page2|/pt/tags/memory/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/memory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/motivation/page10|/pt/tags/motivation/page2|/pt/tags/motivation/page3|/pt/tags/motivation/page4|/pt/tags/motivation/page5|/pt/tags/motivation/page6|/pt/tags/motivation/page7|/pt/tags/motivation/page8|/pt/tags/motivation/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/motivation/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/mystery/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/mystery/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/practice/page2|/pt/tags/practice/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/practice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/result/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/result/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/rival/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/rival/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/routine/page10|/pt/tags/routine/page12|/pt/tags/routine/page13|/pt/tags/routine/page14|/pt/tags/routine/page15|/pt/tags/routine/page16|/pt/tags/routine/page2|/pt/tags/routine/page3|/pt/tags/routine/page4|/pt/tags/routine/page5|/pt/tags/routine/page6|/pt/tags/routine/page7|/pt/tags/routine/page8|/pt/tags/routine/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/routine/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/routine-work/page2|/pt/tags/routine-work/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/routine-work/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/skill/page2|/pt/tags/skill/page3|/pt/tags/skill/page4|/pt/tags/skill/page5)(?:\\.html)?/?$",
+        "destination": "/pt/tags/skill/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/smile/page2|/pt/tags/smile/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/smile/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/snack/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/snack/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/spirit/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/spirit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/stress/page10|/pt/tags/stress/page12|/pt/tags/stress/page13|/pt/tags/stress/page14|/pt/tags/stress/page15|/pt/tags/stress/page2|/pt/tags/stress/page3|/pt/tags/stress/page4|/pt/tags/stress/page5|/pt/tags/stress/page6|/pt/tags/stress/page7|/pt/tags/stress/page8|/pt/tags/stress/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/stress/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/success/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/success/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/summer/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/summer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/support/page2|/pt/tags/support/page3|/pt/tags/support/page4)(?:\\.html)?/?$",
+        "destination": "/pt/tags/support/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/team/page10|/pt/tags/team/page12|/pt/tags/team/page2|/pt/tags/team/page3|/pt/tags/team/page4|/pt/tags/team/page5|/pt/tags/team/page6|/pt/tags/team/page7|/pt/tags/team/page8|/pt/tags/team/page9)(?:\\.html)?/?$",
+        "destination": "/pt/tags/team/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/tension/page2|/pt/tags/tension/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/tension/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/uniform/page2|/pt/tags/uniform/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/uniform/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/victory/page2|/pt/tags/victory/page3)(?:\\.html)?/?$",
+        "destination": "/pt/tags/victory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/pt/tags/weather/page2)(?:\\.html)?/?$",
+        "destination": "/pt/tags/weather/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/artist/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/artist/#moment-ee312de744f7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/call-center/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/call-center/#moment-57ef8f80f781",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/chef/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/chef/#moment-ed817e950c0e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/childcare/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/childcare/#moment-5ee4d32af9ed",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/cleaning/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/cleaning/#moment-56c4ab0e5771",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/construction/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/construction/#moment-8e3ed7b6f6c1",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/creative/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/creative/#moment-d253999d7e8c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/delivery/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/delivery/#moment-e4ceaffebe0c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/driver/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/driver/#moment-fd8124d650b5",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/engineer/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/engineer/#moment-b273e97b110b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/event-staff/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/event-staff/#moment-0ac85d4bba05",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/farmer/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/farmer/#moment-cc3cb70b72ff",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/flight-attendant/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/flight-attendant/#moment-c09a75d554f6",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/freelancer/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/freelancer/#moment-4257bc72e798",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/hairdresser/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/hairdresser/#moment-6a064403cad8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/medical/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/medical/#moment-c971a8e86959",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/office-worker/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/office-worker/#moment-935f11d86301",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/police/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/police/#moment-9ea3a1987c86",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/public-servant/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/public-servant/#moment-d8243dfff8f9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/researcher/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/researcher/#moment-6266357bdd1d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/sales/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/sales/#moment-e0d8925bf971",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/security/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/security/#moment-34c0ee3a980d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/service-industry/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/service-industry/#moment-f5a5de979948",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/teacher/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/teacher/#moment-d0a65329f1b4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/jobs/waiter/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/jobs/waiter/#moment-7a16db97496e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/american_football/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/american_football/#moment-2bff7df7d1fd",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/badminton/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/badminton/#moment-5ed47e8bb4db",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/baseball/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/baseball/#moment-b630e9ce3fb0",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/basketball/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/basketball/#moment-e2e12e971411",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/cricket/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/cricket/#moment-b292b4ba6ce2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/cycling/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/cycling/#moment-3b575f379e86",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/golf/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/golf/#moment-496e19295949",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/gymnastics/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/gymnastics/#moment-eeff5443a230",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/hockey/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/hockey/#moment-0f34b32c2d2e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/martial_arts/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/martial_arts/#moment-4c8974f9e0ad",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/rugby/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/rugby/#moment-376f16222e0c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/ski_snowboard/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/ski_snowboard/#moment-e7e6301521b9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/soccer/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/soccer/#moment-384c9bbdf07d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/swimming/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/swimming/#moment-0d545b35f136",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/table_tennis/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/table_tennis/#moment-b12a4667616c",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/tennis/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/tennis/#moment-ce1c9cd8dcf1",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/track_and_field/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/track_and_field/#moment-3ac1f395649f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/categories/sports/volleyball/page2)(?:\\.html)?/?$",
+        "destination": "/es/categories/sports/volleyball/#moment-9a9c2f848e29",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/accident/page2|/es/tags/accident/page3|/es/tags/accident/page4)(?:\\.html)?/?$",
+        "destination": "/es/tags/accident/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/break/page2|/es/tags/break/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/break/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/challenge/page10|/es/tags/challenge/page12|/es/tags/challenge/page13|/es/tags/challenge/page14|/es/tags/challenge/page15|/es/tags/challenge/page16|/es/tags/challenge/page17|/es/tags/challenge/page18|/es/tags/challenge/page19|/es/tags/challenge/page2|/es/tags/challenge/page20|/es/tags/challenge/page22|/es/tags/challenge/page23|/es/tags/challenge/page24|/es/tags/challenge/page25|/es/tags/challenge/page26|/es/tags/challenge/page3|/es/tags/challenge/page4|/es/tags/challenge/page5|/es/tags/challenge/page6|/es/tags/challenge/page7|/es/tags/challenge/page8|/es/tags/challenge/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/challenge/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/client/page2|/es/tags/client/page3|/es/tags/client/page4)(?:\\.html)?/?$",
+        "destination": "/es/tags/client/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/coffee/page2|/es/tags/coffee/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/coffee/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/colleague/page2|/es/tags/colleague/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/colleague/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/communication/page2|/es/tags/communication/page3|/es/tags/communication/page4|/es/tags/communication/page5|/es/tags/communication/page6)(?:\\.html)?/?$",
+        "destination": "/es/tags/communication/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/competition/page2|/es/tags/competition/page3|/es/tags/competition/page4)(?:\\.html)?/?$",
+        "destination": "/es/tags/competition/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/creativity/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/creativity/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/customer/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/customer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/customer-service/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/customer-service/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/deadline/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/deadline/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/effort/page2|/es/tags/effort/page3|/es/tags/effort/page4|/es/tags/effort/page5|/es/tags/effort/page6|/es/tags/effort/page7|/es/tags/effort/page8)(?:\\.html)?/?$",
+        "destination": "/es/tags/effort/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/end/page2|/es/tags/end/page3|/es/tags/end/page4)(?:\\.html)?/?$",
+        "destination": "/es/tags/end/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/energy/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/energy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/event/page2|/es/tags/event/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/event/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/failure/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/failure/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/family/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/family/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/food/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/food/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/friendship/page2|/es/tags/friendship/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/friendship/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/fun/page10|/es/tags/fun/page12|/es/tags/fun/page13|/es/tags/fun/page14|/es/tags/fun/page15|/es/tags/fun/page16|/es/tags/fun/page17|/es/tags/fun/page18|/es/tags/fun/page19|/es/tags/fun/page2|/es/tags/fun/page20|/es/tags/fun/page22|/es/tags/fun/page23|/es/tags/fun/page24|/es/tags/fun/page25|/es/tags/fun/page26|/es/tags/fun/page27|/es/tags/fun/page28|/es/tags/fun/page29|/es/tags/fun/page3|/es/tags/fun/page30|/es/tags/fun/page4|/es/tags/fun/page5|/es/tags/fun/page6|/es/tags/fun/page7|/es/tags/fun/page8|/es/tags/fun/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/fun/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/habit/page10|/es/tags/habit/page2|/es/tags/habit/page3|/es/tags/habit/page4|/es/tags/habit/page5|/es/tags/habit/page6|/es/tags/habit/page7|/es/tags/habit/page8|/es/tags/habit/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/habit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/injury/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/injury/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/luck/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/luck/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/manager/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/manager/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/meeting/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/meeting/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/memory/page2|/es/tags/memory/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/memory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/morning/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/morning/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/motivation/page10|/es/tags/motivation/page2|/es/tags/motivation/page3|/es/tags/motivation/page4|/es/tags/motivation/page5|/es/tags/motivation/page6|/es/tags/motivation/page7|/es/tags/motivation/page8|/es/tags/motivation/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/motivation/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/mystery/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/mystery/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/night/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/night/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/plan/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/plan/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/practice/page2|/es/tags/practice/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/practice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/project/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/project/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/regret/page2|/es/tags/regret/page3|/es/tags/regret/page4)(?:\\.html)?/?$",
+        "destination": "/es/tags/regret/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/relax/page2|/es/tags/relax/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/relax/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/result/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/result/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/review/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/review/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/routine/page10|/es/tags/routine/page12|/es/tags/routine/page13|/es/tags/routine/page2|/es/tags/routine/page3|/es/tags/routine/page4|/es/tags/routine/page5|/es/tags/routine/page6|/es/tags/routine/page7|/es/tags/routine/page8|/es/tags/routine/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/routine/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/routine-work/page10|/es/tags/routine-work/page12|/es/tags/routine-work/page13|/es/tags/routine-work/page14|/es/tags/routine-work/page15|/es/tags/routine-work/page16|/es/tags/routine-work/page17|/es/tags/routine-work/page2|/es/tags/routine-work/page3|/es/tags/routine-work/page4|/es/tags/routine-work/page5|/es/tags/routine-work/page6|/es/tags/routine-work/page7|/es/tags/routine-work/page8|/es/tags/routine-work/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/routine-work/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/school/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/school/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/skill/page2|/es/tags/skill/page3|/es/tags/skill/page4|/es/tags/skill/page5|/es/tags/skill/page6)(?:\\.html)?/?$",
+        "destination": "/es/tags/skill/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/smile/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/smile/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/snack/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/snack/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/spirit/page2|/es/tags/spirit/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/spirit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/strategy/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/strategy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/stress/page2|/es/tags/stress/page3|/es/tags/stress/page4|/es/tags/stress/page5|/es/tags/stress/page6|/es/tags/stress/page7)(?:\\.html)?/?$",
+        "destination": "/es/tags/stress/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/success/page2|/es/tags/success/page3|/es/tags/success/page4|/es/tags/success/page5|/es/tags/success/page6)(?:\\.html)?/?$",
+        "destination": "/es/tags/success/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/support/page2)(?:\\.html)?/?$",
+        "destination": "/es/tags/support/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/team/page10|/es/tags/team/page12|/es/tags/team/page13|/es/tags/team/page14|/es/tags/team/page15|/es/tags/team/page2|/es/tags/team/page3|/es/tags/team/page4|/es/tags/team/page5|/es/tags/team/page6|/es/tags/team/page7|/es/tags/team/page8|/es/tags/team/page9)(?:\\.html)?/?$",
+        "destination": "/es/tags/team/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/tension/page2|/es/tags/tension/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/tension/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/uniform/page2|/es/tags/uniform/page3|/es/tags/uniform/page4)(?:\\.html)?/?$",
+        "destination": "/es/tags/uniform/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/weather/page2|/es/tags/weather/page3)(?:\\.html)?/?$",
+        "destination": "/es/tags/weather/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/es/tags/workplace/page2|/es/tags/workplace/page3|/es/tags/workplace/page4|/es/tags/workplace/page5|/es/tags/workplace/page6|/es/tags/workplace/page7|/es/tags/workplace/page8)(?:\\.html)?/?$",
+        "destination": "/es/tags/workplace/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/artist/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/artist/#moment-83e044089c27",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/call-center/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/call-center/#moment-6adf5864912f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/chef/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/chef/#moment-0d4e609841c2",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/childcare/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/childcare/#moment-15f2ae26d599",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/cleaning/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/cleaning/#moment-de1c72e6d600",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/construction/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/construction/#moment-57cc9a1121fc",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/creative/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/creative/#moment-df0f2effb8a7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/delivery/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/delivery/#moment-38c3983ff9f4",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/driver/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/driver/#moment-b8429f716fb9",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/engineer/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/engineer/#moment-e37b10369c0e",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/event-staff/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/event-staff/#moment-0d128c882b73",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/farmer/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/farmer/#moment-9821958efb79",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/flight-attendant/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/flight-attendant/#moment-aaca92da1fb6",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/freelancer/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/freelancer/#moment-26469a7cfe90",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/hairdresser/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/hairdresser/#moment-f3772ffabb38",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/medical/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/medical/#moment-7d7c9c4e2729",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/office-worker/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/office-worker/#moment-ea7a5b622781",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/police/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/police/#moment-9711c7956532",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/public-servant/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/public-servant/#moment-54ae36cf9801",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/researcher/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/researcher/#moment-c72ded37a29d",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/sales/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/sales/#moment-2f196df6988f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/security/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/security/#moment-433e13708a09",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/service-industry/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/service-industry/#moment-08e0187a4737",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/teacher/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/teacher/#moment-0d180a202a74",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/jobs/waiter/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/jobs/waiter/#moment-13681dfc7c2f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/american_football/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/american_football/#moment-874775bd2ee0",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/badminton/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/badminton/#moment-c695db921393",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/baseball/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/baseball/#moment-f8bd9ce842b7",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/basketball/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/basketball/#moment-51a7bd5994c0",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/cricket/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/cricket/#moment-ede16d7d36fb",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/cycling/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/cycling/#moment-fbcf29c87f0f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/golf/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/golf/#moment-2f75c368451b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/gymnastics/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/gymnastics/#moment-fb1c121d2f17",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/hockey/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/hockey/#moment-141ef6324b30",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/martial_arts/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/martial_arts/#moment-22a62c4666f8",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/rugby/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/rugby/#moment-846e861f7d95",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/ski_snowboard/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/ski_snowboard/#moment-37e9de75053f",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/soccer/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/soccer/#moment-bd1711d22c30",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/swimming/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/swimming/#moment-ca3af7b50485",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/table_tennis/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/table_tennis/#moment-e3e6795dd59b",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/tennis/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/tennis/#moment-584689a1b1e1",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/track_and_field/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/track_and_field/#moment-e7403fd17272",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/categories/sports/volleyball/page2)(?:\\.html)?/?$",
+        "destination": "/de/categories/sports/volleyball/#moment-698fa3ce5818",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/accident/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/accident/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/break/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/break/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/challenge/page10|/de/tags/challenge/page12|/de/tags/challenge/page13|/de/tags/challenge/page14|/de/tags/challenge/page15|/de/tags/challenge/page16|/de/tags/challenge/page17|/de/tags/challenge/page18|/de/tags/challenge/page19|/de/tags/challenge/page2|/de/tags/challenge/page20|/de/tags/challenge/page22|/de/tags/challenge/page23|/de/tags/challenge/page24|/de/tags/challenge/page25|/de/tags/challenge/page26|/de/tags/challenge/page27|/de/tags/challenge/page28|/de/tags/challenge/page29|/de/tags/challenge/page3|/de/tags/challenge/page30|/de/tags/challenge/page32|/de/tags/challenge/page4|/de/tags/challenge/page5|/de/tags/challenge/page6|/de/tags/challenge/page7|/de/tags/challenge/page8|/de/tags/challenge/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/challenge/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/coffee/page2|/de/tags/coffee/page3)(?:\\.html)?/?$",
+        "destination": "/de/tags/coffee/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/colleague/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/colleague/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/communication/page2|/de/tags/communication/page3|/de/tags/communication/page4|/de/tags/communication/page5|/de/tags/communication/page6|/de/tags/communication/page7)(?:\\.html)?/?$",
+        "destination": "/de/tags/communication/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/competition/page2|/de/tags/competition/page3|/de/tags/competition/page4|/de/tags/competition/page5)(?:\\.html)?/?$",
+        "destination": "/de/tags/competition/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/creativity/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/creativity/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/customer/page2|/de/tags/customer/page3|/de/tags/customer/page4)(?:\\.html)?/?$",
+        "destination": "/de/tags/customer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/customer-service/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/customer-service/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/effort/page2|/de/tags/effort/page3)(?:\\.html)?/?$",
+        "destination": "/de/tags/effort/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/end/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/end/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/energy/page2|/de/tags/energy/page3|/de/tags/energy/page4|/de/tags/energy/page5)(?:\\.html)?/?$",
+        "destination": "/de/tags/energy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/event/page2|/de/tags/event/page3)(?:\\.html)?/?$",
+        "destination": "/de/tags/event/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/focus/page2|/de/tags/focus/page3)(?:\\.html)?/?$",
+        "destination": "/de/tags/focus/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/food/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/food/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/friendship/page2|/de/tags/friendship/page3|/de/tags/friendship/page4)(?:\\.html)?/?$",
+        "destination": "/de/tags/friendship/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/fun/page10|/de/tags/fun/page12|/de/tags/fun/page13|/de/tags/fun/page14|/de/tags/fun/page15|/de/tags/fun/page16|/de/tags/fun/page17|/de/tags/fun/page18|/de/tags/fun/page19|/de/tags/fun/page2|/de/tags/fun/page20|/de/tags/fun/page22|/de/tags/fun/page23|/de/tags/fun/page24|/de/tags/fun/page25|/de/tags/fun/page26|/de/tags/fun/page27|/de/tags/fun/page28|/de/tags/fun/page29|/de/tags/fun/page3|/de/tags/fun/page30|/de/tags/fun/page32|/de/tags/fun/page33|/de/tags/fun/page34|/de/tags/fun/page35|/de/tags/fun/page36|/de/tags/fun/page37|/de/tags/fun/page38|/de/tags/fun/page39|/de/tags/fun/page4|/de/tags/fun/page40|/de/tags/fun/page42|/de/tags/fun/page43|/de/tags/fun/page44|/de/tags/fun/page45|/de/tags/fun/page46|/de/tags/fun/page5|/de/tags/fun/page6|/de/tags/fun/page7|/de/tags/fun/page8|/de/tags/fun/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/fun/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/habit/page10|/de/tags/habit/page12|/de/tags/habit/page13|/de/tags/habit/page14|/de/tags/habit/page15|/de/tags/habit/page16|/de/tags/habit/page17|/de/tags/habit/page18|/de/tags/habit/page19|/de/tags/habit/page2|/de/tags/habit/page20|/de/tags/habit/page3|/de/tags/habit/page4|/de/tags/habit/page5|/de/tags/habit/page6|/de/tags/habit/page7|/de/tags/habit/page8|/de/tags/habit/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/habit/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/injury/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/injury/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/luck/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/luck/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/memory/page2|/de/tags/memory/page3|/de/tags/memory/page4|/de/tags/memory/page5|/de/tags/memory/page6)(?:\\.html)?/?$",
+        "destination": "/de/tags/memory/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/motivation/page2|/de/tags/motivation/page3|/de/tags/motivation/page4|/de/tags/motivation/page5)(?:\\.html)?/?$",
+        "destination": "/de/tags/motivation/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/night/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/night/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/plan/page10|/de/tags/plan/page12|/de/tags/plan/page13|/de/tags/plan/page14|/de/tags/plan/page15|/de/tags/plan/page2|/de/tags/plan/page3|/de/tags/plan/page4|/de/tags/plan/page5|/de/tags/plan/page6|/de/tags/plan/page7|/de/tags/plan/page8|/de/tags/plan/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/plan/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/practice/page2|/de/tags/practice/page3|/de/tags/practice/page4)(?:\\.html)?/?$",
+        "destination": "/de/tags/practice/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/relax/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/relax/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/routine/page10|/de/tags/routine/page12|/de/tags/routine/page13|/de/tags/routine/page14|/de/tags/routine/page15|/de/tags/routine/page2|/de/tags/routine/page3|/de/tags/routine/page4|/de/tags/routine/page5|/de/tags/routine/page6|/de/tags/routine/page7|/de/tags/routine/page8|/de/tags/routine/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/routine/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/routine-work/page10|/de/tags/routine-work/page12|/de/tags/routine-work/page2|/de/tags/routine-work/page3|/de/tags/routine-work/page4|/de/tags/routine-work/page5|/de/tags/routine-work/page6|/de/tags/routine-work/page7|/de/tags/routine-work/page8|/de/tags/routine-work/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/routine-work/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/rule/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/rule/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/shoes/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/shoes/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/skill/page2|/de/tags/skill/page3|/de/tags/skill/page4|/de/tags/skill/page5|/de/tags/skill/page6)(?:\\.html)?/?$",
+        "destination": "/de/tags/skill/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/smile/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/smile/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/snack/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/snack/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/strategy/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/strategy/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/stress/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/stress/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/success/page2|/de/tags/success/page3|/de/tags/success/page4)(?:\\.html)?/?$",
+        "destination": "/de/tags/success/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/summer/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/summer/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/support/page2|/de/tags/support/page3)(?:\\.html)?/?$",
+        "destination": "/de/tags/support/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/surprise/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/surprise/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/team/page10|/de/tags/team/page2|/de/tags/team/page3|/de/tags/team/page4|/de/tags/team/page5|/de/tags/team/page6|/de/tags/team/page7|/de/tags/team/page8|/de/tags/team/page9)(?:\\.html)?/?$",
+        "destination": "/de/tags/team/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/uniform/page2|/de/tags/uniform/page3|/de/tags/uniform/page4)(?:\\.html)?/?$",
+        "destination": "/de/tags/uniform/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/waiting/page2)(?:\\.html)?/?$",
+        "destination": "/de/tags/waiting/",
+        "type": 301
+      },
+      {
+        "regex": "^(?:/de/tags/weather/page2|/de/tags/weather/page3|/de/tags/weather/page4)(?:\\.html)?/?$",
+        "destination": "/de/tags/weather/",
+        "type": 301
+      },
+      {
+        "regex": "^/backup_index(?:\\.html)?/?$",
+        "destination": "/",
+        "type": 301
       }
     ]
   },
