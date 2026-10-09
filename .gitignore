@@ -23,3 +23,7 @@ service-account*.json
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Generated production output and verification reports
+dist/
+.build/
